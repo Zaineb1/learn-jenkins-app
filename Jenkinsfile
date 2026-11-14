@@ -51,7 +51,7 @@ pipeline {
                 node_modules/.bin/netlify --version
                 echo "Deploy project in $NETLIFY_SITE_ID"
                 node_modules/.bin/netlify status
-                node_modules/.bin/netlify deploy --dir=build
+                node_modules/.bin/netlify deploy --dir=build --prod --no-build --site=$NETLIFY_SITE_ID
 
                '''
             }
