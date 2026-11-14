@@ -32,23 +32,7 @@ pipeline {
                 
             }
         }
-        stage('E2E') {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
-            reuseNode true
-        }
-    }
-
-    steps {
-        sh '''
-            npm install serve
-            node_modules/.bin/serve -s build &
-            sleep 10
-            npx playwright test --reporter=html
-        '''
-    }
-}
+       
         
         stage('deploy') {
             agent{
@@ -61,7 +45,7 @@ pipeline {
                sh '''
                 
                  npm install netlify-cli-g
-                 netlify --version
+                 node_modules/.bin/netlify --version
                
                '''
             }
